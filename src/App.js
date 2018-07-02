@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './hellofresh-logo.svg';
+/*
+ We encourage our candidates to over-engineer,
+ so please feel free to use any other styling methodology
+ e.g., Emotion, Fela, SASS, etc.
+ */
 import './App.css';
 
 class App extends Component {
