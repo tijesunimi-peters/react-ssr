@@ -3,7 +3,7 @@ Hello! Thank you for taking the time to try out FrontEnd React test. The goal of
 
 Though the test is using [create-react-app](https://github.com/facebook/create-react-app) to help you get started faster, feel more than free to add any particular technique or algorithm at any point, which you think might enrich the overall quality of the end result.
 
-Please complete the test promptly, however feel free to over-engineer as you would in a production app, we would like to assess all your skills!
+Please complete the test promptly, however feel free to over-engineer **as you would in a production app**, we would like to assess all your skills!
 
 _Note: While we love open source here at HelloFresh, please do not create a public repo with your test in! This challenge is only shared with people interviewing, and for obvious reasons we'd like it to remain this way._
 
@@ -18,7 +18,7 @@ _Note: While we love open source here at HelloFresh, please do not create a publ
 
 Tips on How to Tackle the test:
 1. Schedule a specific time to tackle the test
-2. Be well rested and choose a quiet place with no interruptions 
+2. Be well rested and choose a quiet place with no interruptions
 3. Read the instructions and requirements carefully, and feel free to ask any questions.
 4. Identify technical decisions you need to make and sketch out an initial plan.
 5. Organise your tasks in a todo list or a Trello board
@@ -94,7 +94,7 @@ _P.S: We'll automatically format the code before every commit using prettier. We
 #### Features:
 - Two routes are implmented (recipes overview, and recipe detail)
 - Recipe rating is implemented
-- Recipe favouriting is implemented 
+- Recipe favouriting is implemented
 #### UI:
 - You implemented a proper grid.
 - Your app is responsive.
@@ -106,4 +106,3 @@ _P.S: We'll automatically format the code before every commit using prettier. We
 - Your app is deployed (you may use something like [Now](https://zeit.co/now))
 
 Good luck, and have fun!
-
