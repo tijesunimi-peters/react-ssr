@@ -10,7 +10,7 @@ _Note: While we love open source here at HelloFresh, please do not create a publ
 
 ### Instructions
 1. Clone this repo.
-2. Create a new `dev` branch (you might create a fork of this repo, but it's not required).
+2. Create a new `dev` branch.
 3. Plan, Code, commit, repeat! (We won't be looking at the time each task took, but we'd love to see your train of thought reflected in the development timeline  through various commits).
 4. When finished, write clear instructions and an explanation for your solution.
 5. Create a Pull-Request to this repo.
@@ -93,7 +93,7 @@ _P.S: We'll automatically format the code before every commit using prettier. We
 - Tests and Eslint need to pass
 #### Features:
 - Two routes are implmented (recipes overview, and recipe detail)
-- Recipe rating is implemented
+- Recipe rating is implemented. Please do not use any external library like `react-rating`.
 - Recipe favouriting is implemented
 #### UI:
 - You implemented a proper grid.
