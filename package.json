@@ -12,22 +12,26 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "nodemon ./server",
-    "build": "webpack --config webpack.config.js",
+    "start": "nodemon ./server/index.js",
+    "build": "webpack",
     "test": "react-scripts test --env=jsdom",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "build:renderer": "babel ./renderingSystem/src -d ./renderingSystem/views"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^5.0.1",
     "css-loader": "^2.1.1",
     "eslint": "^4.19.1",
     "eslint-cli": "^1.1.1",
     "eslint-config-react-app": "^2.1.0",
+    "file-loader": "^3.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "mini-css-extract-plugin": "^0.5.0",

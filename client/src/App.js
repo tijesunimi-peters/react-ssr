@@ -5,7 +5,6 @@ import logo from './hellofresh-logo.svg';
  so please feel free to use any other styling methodology
  e.g., Emotion, Fela, SASS, etc.
  */
-import './App.css';
 
 class App extends Component {
   render() {
