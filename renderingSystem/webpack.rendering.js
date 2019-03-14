@@ -11,7 +11,7 @@ module.exports = (devMode = true) => ({
   entry: path.resolve(__dirname, './src/index.js'),
   mode: devMode ? "development" : 'production',
   output: {
-    path: path.resolve(__dirname, 'views'),
+    path: path.resolve(__dirname, 'dist'),
     filename: "[name].js",
     library: 'main',
     libraryTarget: 'commonjs2'

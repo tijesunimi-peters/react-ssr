@@ -5,14 +5,14 @@ const express = require("express");
 const app = express();
 const fs = require('fs');
 const path = require('path');
-var renderingSystem = require('../renderingSystem/views/main').templater;
+const renderingSystem = require('../renderingSystem/dist/main').templater;
 
 app.use('/media',express.static('public/assets'));
 app.use(express.static('public/assets'));
 
 app.get('/', function (_, res) {
   const template = fs.readFileSync(path.resolve(__dirname, "../public/index.html")).toString();
-  body = renderingSystem('Home', template);
+  const body = renderingSystem('Home', template);
   res.send(body);
 });
 

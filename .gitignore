@@ -39,7 +39,7 @@ build/Release
 /build
 build
 public
-renderingSystem/views
+/renderingSystem/dist/
 
 # Dependency directories
 node_modules/
