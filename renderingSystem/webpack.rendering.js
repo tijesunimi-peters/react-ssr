@@ -1,14 +1,13 @@
 const path = require('path');
 const fs = require('fs');
 
-const devMode = process.env.NODE_ENV !== 'production';
 fs.copyFileSync(path.resolve(__dirname, "../client/src/App.js"), path.resolve(__dirname, "./src/App.js"))
-// fs.copyFileSync(path.resolve(__dirname, "../client/src/App.css"), path.resolve(__dirname, "./src/App.css"))
 fs.copyFileSync(path.resolve(__dirname, "../client/src/hellofresh-logo.svg"), path.resolve(__dirname, "./src/hellofresh-logo.svg"))
 
-module.exports = {
-  name: 'Redering Engine',
+module.exports = (devMode = true) => ({
+  name: 'Rendering Engine',
   target: 'node',
+  watch: devMode ? true : false,
   entry: path.resolve(__dirname, './src/index.js'),
   mode: devMode ? "development" : 'production',
   output: {
@@ -34,5 +33,5 @@ module.exports = {
     ]
   },
   plugins: []
-}
+})
 

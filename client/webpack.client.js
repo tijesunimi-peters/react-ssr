@@ -4,12 +4,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const devMode = process.env.NODE_ENV !== 'production';
-
-module.exports = {
+module.exports = (devMode = true) => ({
   name: 'Client',
   target: 'web',
-  // watch: devMode ? true : false,
+  watch: devMode ? true : false,
   watchOptions: {
     ignored: [
       path.resolve(__dirname, '../public'),
@@ -69,4 +67,4 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
-};
+});

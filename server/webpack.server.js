@@ -4,21 +4,17 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
-const devMode = process.env.NODE_ENV !== 'production';
-
-module.exports = {
-  name: "Server",
+module.exports = (devMode = true) => ({
+  name: "Server Bundle",
   target: "node",
-  // watch: devMode ? true : false,
+  watch: devMode ? true : false,
   watchOptions: {
     ignored: [path.resolve(__dirname, "../public"), 'node_modules']
   },
   mode: devMode ? 'development' : 'production',
   entry: {
     style: path.resolve(__dirname, './src/styles/style.scss'),
-    // server: path.resolve(__dirname, './index.js'),
   },
   output: {
     path: path.resolve(__dirname, '../public/assets'),
@@ -71,4 +67,4 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
-};
+});
