@@ -14,6 +14,7 @@ module.exports = (devMode = true) => ({
   },
   mode: devMode ? 'development' : 'production',
   entry: {
+    skeleton: path.resolve(__dirname, './src/styles/skeletons.scss'),
     style: path.resolve(__dirname, './src/styles/style.scss'),
   },
   output: {

@@ -1,0 +1,22 @@
+.hf-wrapper {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+
+  &.nav {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+}
+
+.hf-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hf-header {
+  height: 60px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}

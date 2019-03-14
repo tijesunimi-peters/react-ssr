@@ -39,6 +39,7 @@ build/Release
 /build
 build
 public
+renderingSystem/views
 
 # Dependency directories
 node_modules/
