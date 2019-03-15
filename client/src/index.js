@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Router from './Router';
 
-ReactDOM.hydrate(<App />, document.getElementById('root'));
+ReactDOM.hydrate(<Router />, document.getElementById('root'));

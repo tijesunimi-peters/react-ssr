@@ -10,9 +10,9 @@ const renderingSystem = require('../renderingSystem/dist/main').templater;
 app.use('/media',express.static('public/assets'));
 app.use(express.static('public/assets'));
 
-app.get('/', function (_, res) {
+app.get('*', function (req, res) {
   const template = fs.readFileSync(path.resolve(__dirname, "../public/index.html")).toString();
-  const body = renderingSystem('Home', template);
+  const body = renderingSystem('Home', template, req.url);
   res.send(body);
 });
 

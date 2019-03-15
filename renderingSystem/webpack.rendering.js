@@ -1,8 +1,4 @@
 const path = require('path');
-const fs = require('fs');
-
-// fs.copyFileSync(path.resolve(__dirname, "../client/src/App.js"), path.resolve(__dirname, "./src/App.js"))
-// fs.copyFileSync(path.resolve(__dirname, "../client/src/hellofresh-logo.svg"), path.resolve(__dirname, "./src/hellofresh-logo.svg"))
 
 module.exports = (devMode = true) => ({
   name: 'Rendering Engine',

@@ -1,5 +1,18 @@
-import React, { Component, Fragment } from 'react';
-import logo from './hellofresh-logo.svg';
+import React, { Component } from 'react';
+import loadable from '@loadable/component';
+import Header from './shared/Header';
+import { Route } from 'react-router-dom';
+
+const Home = loadable(
+  () => import(/* webpackChunkName: "home" */ './components/Home'),
+  { fallback: <div className="skeleton" /> }
+);
+
+const About = loadable(
+  () => import(/* webpackChunkName: "about" */ './components/About'),
+  { fallback: <div className="skeleton" /> }
+);
+
 /*
  We encourage our candidates to over-engineer,
  so please feel free to use any other styling methodology
@@ -7,26 +20,22 @@ import logo from './hellofresh-logo.svg';
  */
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.appRef = React.createRef();
+  }
+
   render() {
     return (
-      <Fragment>
-        <div className="hf-wrapper nav">
-          <div className="hf-container">
-            <header className="hf-header">
-              <img src={`${logo}`} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
-          </div>
-        </div>
-
+      <div ref={this.appRef}>
+        <Header />
         <div className="hf-wrapper">
           <div className="hf-container">
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+            <Route path="/" exact render={() => <Home />} />
+            <Route path="/about" exact render={() => <About />} />
           </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

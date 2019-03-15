@@ -66,5 +66,8 @@ module.exports = (devMode = true) => ({
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
+    splitChunks: {
+      chunks: 'all'
+    }
   },
 });

@@ -2,8 +2,25 @@
   border-radius: 4px;
   width: 100%;
   position: relative;
-  // background-color: #E2E2E2;
   background-color: grey;
+  height: 30px;
+  z-index: 1;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    z-index: 9;
+    border-radius: inherit;
+  }
 
   &::after {
     display: block;
@@ -12,8 +29,10 @@
     width: 100%;
     height: 100%;
     transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
     animation: skeleton 1.5s infinite;
+    z-index: 10;
+    top: 0;
   }
 
   &.nav {
@@ -24,6 +43,11 @@
     height: 100px;
   }
 
+  &.logo {
+    width: 30px;
+    border-radius: 50%;
+  }
+
   @keyframes skeleton {
     100% {
       transform: translateX(100%);
@@ -31,3 +55,15 @@
   }
 }
 
+.skeleton-wrapper {
+  display: flex;
+
+  * {
+    flex: 1;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
