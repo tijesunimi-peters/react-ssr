@@ -1,5 +1,23 @@
 const path = require('path');
 
+
+/**
+ * @name BundlingSystem/RenderingSystem
+ * @param {boolean} devMode
+ * @file This is the bundling system for Server Side Rendering system to a commonjs library that can be used by `server/index.js`
+ *
+ * Entry:
+ * ```
+ * renderingSystem/src/index.js
+ * ```
+ *
+ * Output:
+ * ```
+ * renderingSystem/dist/**
+ * ```
+ *
+
+ */
 module.exports = (devMode = true) => ({
   name: 'Rendering Engine',
   target: 'node',

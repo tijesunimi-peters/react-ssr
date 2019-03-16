@@ -1,0 +1,1 @@
+A software application is a product of several systems that work together to provide a service/services to the end user. The systems of this application are partitioned based on domain of problem statement and are structured based on commonality and variance.

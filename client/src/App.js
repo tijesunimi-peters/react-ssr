@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import loadable from '@loadable/component';
 import Header from './shared/Header';
 import { Route } from 'react-router-dom';
 
+/**
+ * Webpack splits the component and names the split using the webpackChunkName<br />
+ * - location: `/client/src/App.js`
+ * - exports `/renderingSystem/dist/home.js`
+ */
 const Home = loadable(
   () => import(/* webpackChunkName: "home" */ './components/Home'),
   { fallback: <div className="skeleton" /> }
@@ -13,31 +18,23 @@ const About = loadable(
   { fallback: <div className="skeleton" /> }
 );
 
-/*
- We encourage our candidates to over-engineer,
- so please feel free to use any other styling methodology
- e.g., Emotion, Fela, SASS, etc.
+/**
+ * @name App
+ *
+ * @file App Component is used for SSR and Client Rendering
  */
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.appRef = React.createRef();
-  }
-
-  render() {
-    return (
-      <div ref={this.appRef}>
-        <Header />
-        <div className="hf-wrapper">
-          <div className="hf-container">
-            <Route path="/" exact render={() => <Home />} />
-            <Route path="/about" exact render={() => <About />} />
-          </div>
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <div className="hf-wrapper">
+        <div className="hf-container">
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/about" exact render={() => <About />} />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;

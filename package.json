@@ -21,7 +21,7 @@
     "build": "webpack",
     "test": "react-scripts test --env=jsdom",
     "precommit": "lint-staged",
-    "build:renderer": "babel ./renderingSystem/src -d ./renderingSystem/views"
+    "build:doc": "documentation build client/** renderingSystem/src/index.js webpack.config.js server/index.js -f md -o Documentation.md --config ./documentation.yml"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

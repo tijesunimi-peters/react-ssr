@@ -5,6 +5,23 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
+/**
+ * @file Webpack module configuration for the Server <br />
+ * Entry:
+ * ```
+ *  skeletonEvent: `./src/js/skeleton.js`
+ *  style: `./src/styles/style.scss`
+ * ```
+ *
+ * Output:
+ * ```
+ *   client/index.html
+ *   public/assets/style.css
+ *   public/assets/skeletonEvent*
+ * ```
+ * @name BundlingSystem/Server
+ */
 module.exports = (devMode = true) => ({
   name: "Server Bundle",
   target: "node",

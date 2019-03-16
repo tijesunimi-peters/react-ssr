@@ -4,6 +4,30 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+/**
+ * @fileoverview Webpack config function for bundling the Client assets
+ * Entry
+ * ```
+ * client/src/index.js
+ * client/index.html
+ * ```
+ *
+ * Output
+ * ```
+ * public/assets/client*
+ * public/index.html
+ * ```
+ * @name BundlingSystem/Client
+ * @requires webpack
+ * @requires mini-css-extract-plugin
+ * @requires uglifyjs-webpack-plugin
+ * @requires optimize-css-assets-webpack-plugin
+ * @requires html-webpack-plugin
+ * @requires ./index.html
+ * @exports public/assets/client.js
+ * @exports public/index.html
+ */
+
 module.exports = (devMode = true) => ({
   name: 'Client',
   target: 'web',
@@ -22,7 +46,7 @@ module.exports = (devMode = true) => ({
   output: {
     path: path.resolve(__dirname, '../public/assets'),
     filename: devMode ? '[name].js' : '[name].[hash].js',
-    publicPath: "/media/"
+    publicPath: '/media/',
   },
   module: {
     rules: [
@@ -53,9 +77,9 @@ module.exports = (devMode = true) => ({
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './index.html'),
       filename: path.resolve(__dirname, '../public/index.html'),
-      content: "\${content}",
-      title: "\${title}",
-    }),
+      content: '${content}',
+      title: '${title}',
+    })
   ],
   optimization: {
     minimizer: [
@@ -67,7 +91,7 @@ module.exports = (devMode = true) => ({
       new OptimizeCSSAssetsPlugin({}),
     ],
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
 });

@@ -1,3 +1,9 @@
+/**
+ * @name ServerSystem
+ * @file Express Server<br />
+ * Uses `public/index.html` as template for the rendering system
+ */
+
 require('dotenv').config();
 
 const express = require("express");
@@ -5,6 +11,7 @@ const express = require("express");
 const app = express();
 const fs = require('fs');
 const path = require('path');
+
 const renderingSystem = require('../renderingSystem/dist/main').templater;
 
 app.use('/media',express.static('public/assets'));

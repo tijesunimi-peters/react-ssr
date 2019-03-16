@@ -1,0 +1,27 @@
+toc:
+  - name: Architecture
+    file: docs/architecture.md
+  - name: Systems
+    file: docs/systems.md
+  - name: BundlingSystem
+    file: docs/bundling_system.md
+    children:
+      - BundlingSystem/Global
+      - BundlingSystem/Server
+      - BundlingSystem/RenderingSystem
+      - BundlingSystem/Client
+  - name: Server Side Rendering System
+    children:
+      - RenderingSystem
+    file: docs/ssr.md
+  - ServerSystem
+  - name: Client System
+    file: docs/client_system.md
+    children:
+      - name: Components
+        file: docs/components.md
+      - Router
+      - App
+      - Home
+      - Loader
+
