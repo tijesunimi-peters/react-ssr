@@ -7,8 +7,8 @@ The bundling system is webpack.
 
 ### Divisions
  1. Global
-    [BundlingSystem - Global](#bundlingsystem/global)
+    [BundlingSystem - Global](#bundlingsystemglobal)
  2. Sub-system
-    - [BundlingSystem - Server](#bundlingsystem/server)
-    - [BundlingSystem - RenderingSystem](#bundlingsystem/renderingsystem)
-    - [BundlingSystem - Client](#bundlingsystem/client)
+    - [BundlingSystem - Server](#bundlingsystemserver)
+    - [BundlingSystem - RenderingSystem](#bundlingsystemrenderingsystem)
+    - [BundlingSystem - Client](#bundlingsystemclient)

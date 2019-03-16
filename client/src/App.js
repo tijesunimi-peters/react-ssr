@@ -3,11 +3,6 @@ import loadable from '@loadable/component';
 import Header from './shared/Header';
 import { Route } from 'react-router-dom';
 
-/**
- * Webpack splits the component and names the split using the webpackChunkName<br />
- * - location: `/client/src/App.js`
- * - exports `/renderingSystem/dist/home.js`
- */
 const Home = loadable(
   () => import(/* webpackChunkName: "home" */ './components/Home'),
   { fallback: <div className="skeleton" /> }
@@ -21,7 +16,8 @@ const About = loadable(
 /**
  * @name App
  *
- * @file App Component is used for SSR and Client Rendering
+ * @file App Component is used for SSR and Client Rendering. Loadable library splits coomponents into chunks and the chunks are name according to the webpack chunk name.
+ * Output Folder: `/renderingSystem/dist/[webpackChunkName].js`
  */
 const App = () => {
   return (

@@ -19,8 +19,7 @@
     -   [Components][15]
     -   [Router][16]
     -   [App][17]
-    -   [Home][18]
-    -   [Loader][19]
+    -   [Loader][18]
 
 ## Architecture
 
@@ -50,11 +49,11 @@ The bundling system is webpack.
 ### Divisions
 
 1.  Global
-    [BundlingSystem - Global][20]
+    [BundlingSystem - Global][4]
 2.  Sub-system
-    -   [BundlingSystem - Server][21]
-    -   [BundlingSystem - RenderingSystem][22]
-    -   [BundlingSystem - Client][23]
+    -   [BundlingSystem - Server][5]
+    -   [BundlingSystem - RenderingSystem][6]
+    -   [BundlingSystem - Client][8]
 
 
 ### BundlingSystem/Global
@@ -94,7 +93,7 @@ Output:
 
 #### Parameters
 
--   `devMode` **[boolean][24]** 
+-   `devMode` **[boolean][19]** 
 
 ### BundlingSystem/Client
 
@@ -120,9 +119,9 @@ This is the server side renderer. The renderer replaces `${}` strings in the tem
 
 #### Parameters
 
--   `title` **[string][25]** 
--   `template` **[string][25]** 
--   `location` **[string][25]** 
+-   `title` **[string][20]** 
+-   `template` **[string][20]** 
+-   `location` **[string][20]** 
 
 #### Examples
 
@@ -145,7 +144,7 @@ const template = `
  response.send(htmlBody)
 ```
 
-Returns **[string][25]** html
+Returns **[string][20]** html
 
 ## ServerSystem
 
@@ -169,14 +168,8 @@ Entry point to the Browser.<br />
 
 ### App
 
-App Component is used for SSR and Client Rendering
-
-### Home
-
-Webpack splits the component and names the split using the webpackChunkName<br />
-
--   location: `/client/src/App.js`
--   exports `/renderingSystem/dist/home.js`
+App Component is used for SSR and Client Rendering. Loadable library splits coomponents into chunks and the chunks are name according to the webpack chunk name.
+Output Folder: `/renderingSystem/dist/[webpackChunkName].js`
 
 ### Loader
 
@@ -216,18 +209,8 @@ Loader wrapper components for mounting components uses render props
 
 [17]: #app
 
-[18]: #home
+[18]: #loader
 
-[19]: #loader
+[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[20]: #bundlingsystem/global
-
-[21]: #bundlingsystem/server
-
-[22]: #bundlingsystem/renderingsystem
-
-[23]: #bundlingsystem/client
-
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-
-[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String

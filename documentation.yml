@@ -22,6 +22,5 @@ toc:
         file: docs/components.md
       - Router
       - App
-      - Home
       - Loader
 
