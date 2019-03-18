@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logo from '../hellofresh-logo.svg';
 
-const LogoLink = styled(Link)`
+export const LogoLink = styled(Link)`
   margin-left: auto;
 
   .logo {

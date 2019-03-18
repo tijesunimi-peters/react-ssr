@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from './Logo';
-import Loader from '../shared/Loader';
+import Logo from '../Logo';
+import Loader from '../Loader';
 
-const NavLink = styled(Link)`
+export const NavLink = styled(Link)`
   margin-right: 20px;
 `;
 
-const NavItems = styled.ul`
+export const NavItems = styled.ul`
   display: flex;
   list-style: none;
   align-items: center;
 `;
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   color: grey;
   margin-right: 20px;
 

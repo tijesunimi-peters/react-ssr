@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @file Loader wrapper components for mounting components uses render props
@@ -26,3 +27,7 @@ export default class Loader extends React.Component {
     );
   }
 }
+
+Loader.propTypes = {
+  render: PropTypes.func.isRequired,
+};
