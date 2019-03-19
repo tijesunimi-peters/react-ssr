@@ -2,6 +2,7 @@ import React from 'react';
 import loadable from '@loadable/component';
 import Header from './shared/Header';
 import { Route } from 'react-router-dom';
+import Recipes from './components/Recipes/Index';
 
 const Home = loadable(
   () => import(/* webpackChunkName: "home" */ './components/Home'),
@@ -27,6 +28,7 @@ const App = () => {
         <div className="hf-container">
           <Route path="/" exact render={() => <Home />} />
           <Route path="/about" exact render={() => <About />} />
+          <Route path="/recipes" component={Recipes} />
         </div>
       </div>
     </div>

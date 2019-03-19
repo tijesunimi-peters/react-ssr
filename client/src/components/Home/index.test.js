@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Home from './index';
 import Loader from '../../shared/Loader';
 import '../../setupTest';
@@ -10,13 +10,16 @@ it('Home renders', () => {
 
 it('Home renders Loader', () => {
   const home = shallow(<Home />);
-  const loader = home.find(Loader);
+  const loader = home.setProps({ mounted: false }).find(Loader);
   expect(loader).toHaveLength(1);
 });
 
 it('Home renders content', () => {
-  const home = mount(<Home />);
-  const h1 = home.find('h1');
-  expect(home.find('h1')).toHaveLength(1);
-  expect(h1.text()).toEqual('Welcome to HelloFresh');
+  const home = shallow(<Home />);
+  const loader = home
+    .setProps({ mounted: true })
+    .find(Loader)
+    .shallow();
+  expect(loader.find('h1')).toHaveLength(1);
+  expect(loader.find('h1').text()).toEqual('Welcome to HelloFresh');
 });

@@ -23,30 +23,45 @@ export const NavItem = styled.li`
   }
 `;
 
-export default () => {
-  return (
-    <div className="hf-wrapper mod-nav">
-      <div className="hf-container">
-        <header className="hf-header">
-          <nav className="nav">
-            <Loader
-              render={() => (
-                <NavItems>
-                  <React.Fragment>
-                    <NavItem>
-                      <Logo to="/" />
-                    </NavItem>
-                    <NavItem className="mod-about">
-                      <NavLink to="/about">About</NavLink>
-                    </NavItem>
-                    <NavItem>Contact</NavItem>
-                  </React.Fragment>
-                </NavItems>
-              )}
-            />
-          </nav>
-        </header>
+export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { mounted: false };
+  }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
+  render() {
+    return (
+      <div className="hf-wrapper mod-nav">
+        <div className="hf-container">
+          <header className="hf-header">
+            <nav className="nav">
+              <Loader
+                mounted={this.state.mounted}
+                render={() => (
+                  <NavItems>
+                    <React.Fragment>
+                      <NavItem>
+                        <Logo to="/" />
+                      </NavItem>
+                      <NavItem className="mod-about">
+                        <NavLink to="/about">About</NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink to="/recipes">Recipes</NavLink>
+                      </NavItem>
+                    </React.Fragment>
+                  </NavItems>
+                )}
+              />
+            </nav>
+          </header>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
