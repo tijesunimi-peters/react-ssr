@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import App from './App';
 import Header from './shared/Header';
 import { Route } from 'react-router-dom';
-import './setupTest';
 
 it('App renders without crashing', () => {
   shallow(<App />);

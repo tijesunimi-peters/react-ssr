@@ -1,4 +1,4 @@
-module.exports = jest.fn().mockImplementation(() => {
+const fetch = jest.fn().mockImplementation(() => {
   const response = new Promise((resolve, reject) => {
     resolve({
       json: jest.fn().mockImplementation(() => {
@@ -16,3 +16,5 @@ module.exports = jest.fn().mockImplementation(() => {
 
   return response;
 });
+
+module.exports = fetch;

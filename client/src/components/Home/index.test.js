@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Home from './index';
 import Loader from '../../shared/Loader';
-import '../../setupTest';
 
 it('Home renders', () => {
   shallow(<Home />);

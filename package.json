@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-transform-regenerator": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
     "@loadable/component": "^5.7.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
@@ -29,12 +30,16 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/client/src/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/client/src/__mocks__/styleMock.js",
       "(iso8601-duration|timeParser)$": "<rootDir>/client/src/__mocks__/timeMock.js"
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/client/src/setupTest.js"
+    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",

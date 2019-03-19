@@ -3,7 +3,7 @@ import Loader from '../../../shared/Loader';
 import RecipeItem, { RecipeItemSkeleton } from './RecipeItem';
 import styled from 'styled-components';
 
-const RecipesContainer = styled.div`
+export const RecipesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
@@ -15,57 +15,79 @@ class Recipes extends React.Component {
     this.state = {
       recipes: [],
       loading: true,
+      error: false,
     };
 
     this.renderSkeleton = this.renderSkeleton.bind(this);
     this.renderRecipes = this.renderRecipes.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
   }
 
   componentDidMount() {
-    fetch('https://s3-eu-west-1.amazonaws.com/frontend-dev-test/recipes.json', {
-      mode: 'cors',
-      method: 'get',
-      cache: 'default',
-    })
+    this.getRecipes();
+  }
+
+  async getRecipes() {
+    await fetch(
+      'https://s3-eu-west-1.amazonaws.com/frontend-dev-test/recipes.json',
+      {
+        mode: 'cors',
+        method: 'get',
+        cache: 'default',
+      }
+    )
       .then(response => response.json())
       .then(data => {
-        this.setState({ recipes: data, loading: false });
+        this.setState({ recipes: data, loading: false, error: false });
+      })
+      .catch(_ => {
+        this.setState({ loading: false, error: true });
       });
   }
 
   renderSkeleton() {
     return (
-      <RecipesContainer className="recipes-container">
-        <RecipeItemSkeleton />
-        <RecipeItemSkeleton />
-      </RecipesContainer>
+      <>
+        <h1 className="skeleton square" style={{ marginBottom: '20px' }} />
+        <RecipesContainer className="recipes-container">
+          <RecipeItemSkeleton />
+          <RecipeItemSkeleton />
+        </RecipesContainer>
+      </>
     );
+  }
+
+  renderError() {
+    if (this.state.error) return <h3>Could not load recipes</h3>;
+    if (this.state.recipes.length === 0) return <h3>No Recipes</h3>;
   }
 
   renderRecipes() {
-    if (this.state.recipes.length === 0) return <h3>No Recipes</h3>;
-
-    return (
-      <RecipesContainer>
-        {this.state.recipes.map(recipe => {
-          return <RecipeItem key={recipe.id} data={recipe} />;
-        })}
-      </RecipesContainer>
-    );
-  }
-
-  render() {
-    if (this.state.loading) return this.renderSkeleton();
+    const isError = this.state.error || this.state.recipes.length === 0;
 
     return (
       <>
         <h1>Recipes</h1>
-        <Loader
-          mounted={!this.state.loading}
-          render={this.renderRecipes}
-          skeleton={this.renderSkeleton}
-        />
+        {!isError ? (
+          <RecipesContainer>
+            {this.state.recipes.map(recipe => {
+              return <RecipeItem key={recipe.id} data={recipe} />;
+            })}
+          </RecipesContainer>
+        ) : (
+          this.renderError()
+        )}
       </>
+    );
+  }
+
+  render() {
+    return (
+      <Loader
+        mounted={!this.state.loading}
+        render={this.renderRecipes}
+        skeleton={this.renderSkeleton}
+      />
     );
   }
 }

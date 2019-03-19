@@ -10,5 +10,9 @@
     ],
     "@babel/react"
   ],
-  "plugins": ["@babel/plugin-transform-regenerator", "dynamic-import-node"]
+  "plugins": [
+    "@babel/plugin-transform-regenerator",
+    "dynamic-import-node",
+    "@babel/plugin-transform-runtime"
+  ]
 }

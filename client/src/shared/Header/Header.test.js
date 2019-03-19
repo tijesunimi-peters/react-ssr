@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Header, { NavItem, NavItems } from './index';
-import '../../setupTest';
 import Loader from '../Loader';
 import Logo from '../Logo';
 

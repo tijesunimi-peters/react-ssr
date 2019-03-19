@@ -13,6 +13,16 @@ export default class Loader extends React.Component {
     this.state = {
       mounted: this.props.mounted || false,
     };
+
+    this.renderSkeleton = this.renderSkeleton.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ mounted: nextProps.mounted });
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.mounted === true;
   }
 
   renderSkeleton() {
@@ -22,9 +32,7 @@ export default class Loader extends React.Component {
   }
 
   render() {
-    return this.state.mounted
-      ? this.props.render(this.props)
-      : this.renderSkeleton();
+    return this.state.mounted ? this.props.render() : this.renderSkeleton();
   }
 }
 
