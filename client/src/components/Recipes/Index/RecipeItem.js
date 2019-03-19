@@ -84,40 +84,89 @@ export const RecipeItemSkeleton = () => {
   );
 };
 
+export const RecipeItemContent = ({ recipe }) => {
+  return (
+    <>
+      <RecipeImage
+        style={{
+          backgroundImage: `url(${recipe.thumb})`,
+        }}
+      />
+      <RecipeDetailsWrapper>
+        <RecipeTitle>{recipe.name}</RecipeTitle>
+        <RecipeHeadline>{recipe.headline}</RecipeHeadline>
+        <RecipeBottom>
+          <RecipeCaloriesTime>{recipe.calories || 'N/A'}</RecipeCaloriesTime>
+          <RecipeCaloriesTime>{durationParser(recipe.time)}</RecipeCaloriesTime>
+          <Stars>
+            {!recipe.rating || recipe.rating === 0 ? (
+              <NoRating />
+            ) : (
+              <Rating rating={recipe.rating} />
+            )}
+          </Stars>
+        </RecipeBottom>
+      </RecipeDetailsWrapper>
+    </>
+  );
+};
+
 class RecipeItem extends React.Component {
   constructor(props) {
     super(props);
+    this.ref = React.createRef();
 
     this.state = {
       recipe: this.props.data,
+      inView: false,
     };
+
+    this.handleScroll = this.handleScroll.bind(this);
+    this.inView = this.inView.bind(this);
+  }
+
+  inView() {
+    const boundlingClient = this.ref.current.getBoundingClientRect();
+
+    return (
+      boundlingClient.top >= 0 &&
+      boundlingClient.left >= 0 &&
+      boundlingClient.right <=
+        (window.innerWidth || document.documentElement.clientWidth) &&
+      boundlingClient.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  handleScroll() {
+    if (!this.state.inView && this.inView()) {
+      this.setState({ inView: true });
+    }
+  }
+
+  componentDidMount() {
+    this.handleScroll();
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(() => {
+        this.handleScroll();
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
     if (!this.state.recipe) return <RecipeItemSkeleton />;
 
-    const { recipe } = this.state;
-
     return (
-      <RecipeWrapper>
-        <RecipeImage style={{ backgroundImage: `url(${recipe.thumb})` }} />
-        <RecipeDetailsWrapper>
-          <RecipeTitle>{recipe.name}</RecipeTitle>
-          <RecipeHeadline>{recipe.headline}</RecipeHeadline>
-          <RecipeBottom>
-            <RecipeCaloriesTime>{recipe.calories || 'N/A'}</RecipeCaloriesTime>
-            <RecipeCaloriesTime>
-              {durationParser(recipe.time)}
-            </RecipeCaloriesTime>
-            <Stars>
-              {!recipe.rating || recipe.rating === 0 ? (
-                <NoRating />
-              ) : (
-                <Rating rating={recipe.rating} />
-              )}
-            </Stars>
-          </RecipeBottom>
-        </RecipeDetailsWrapper>
+      <RecipeWrapper ref={this.ref}>
+        {!this.state.inView ? (
+          <RecipeItemSkeleton />
+        ) : (
+          <RecipeItemContent recipe={this.state.recipe} />
+        )}
       </RecipeWrapper>
     );
   }

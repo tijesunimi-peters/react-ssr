@@ -39,7 +39,11 @@ class Recipes extends React.Component {
     )
       .then(response => response.json())
       .then(data => {
-        this.setState({ recipes: data, loading: false, error: false });
+        this.setState({
+          recipes: [...data, ...data, ...data],
+          loading: false,
+          error: false,
+        });
       })
       .catch(_ => {
         this.setState({ loading: false, error: true });
@@ -71,8 +75,8 @@ class Recipes extends React.Component {
         <h1>Recipes</h1>
         {!isError ? (
           <RecipesContainer>
-            {this.state.recipes.map(recipe => {
-              return <RecipeItem key={recipe.id} data={recipe} />;
+            {this.state.recipes.map((recipe, i) => {
+              return <RecipeItem key={`${recipe.id}_${i}`} data={recipe} />;
             })}
           </RecipesContainer>
         ) : (
