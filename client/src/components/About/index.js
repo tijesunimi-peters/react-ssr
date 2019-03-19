@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from '../../shared/Loader';
+import Container from '../../shared/Container';
 
 export default class About extends React.Component {
   constructor(props) {
@@ -16,14 +17,16 @@ export default class About extends React.Component {
 
   render() {
     return (
-      <Loader
-        mounted={this.state.mounted}
-        render={() => (
-          <React.Fragment>
-            <h1 className="App-title">About HelloFresh</h1>
-          </React.Fragment>
-        )}
-      />
+      <Container>
+        <Loader
+          mounted={this.state.mounted}
+          render={() => (
+            <React.Fragment>
+              <h1 className="App-title">About HelloFresh</h1>
+            </React.Fragment>
+          )}
+        />
+      </Container>
     );
   }
 }

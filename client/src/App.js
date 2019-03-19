@@ -2,7 +2,6 @@ import React from 'react';
 import loadable from '@loadable/component';
 import Header from './shared/Header';
 import { Route } from 'react-router-dom';
-import Recipes from './components/Recipes/Index';
 
 const Home = loadable(
   () => import(/* webpackChunkName: "home" */ './components/Home'),
@@ -11,6 +10,16 @@ const Home = loadable(
 
 const About = loadable(
   () => import(/* webpackChunkName: "about" */ './components/About'),
+  { fallback: <div className="skeleton" /> }
+);
+
+const Recipe = loadable(
+  () => import(/* webpackChunkName: 'recipe' */ './components/Recipes/Show'),
+  { fallback: <div className="skeleton" /> }
+);
+
+const Recipes = loadable(
+  () => import(/* webpackChunkName: 'recipes' */ './components/Recipes/Index'),
   { fallback: <div className="skeleton" /> }
 );
 
@@ -24,13 +33,12 @@ const App = () => {
   return (
     <div>
       <Header />
-      <div className="hf-wrapper">
-        <div className="hf-container">
-          <Route path="/" exact render={() => <Home />} />
-          <Route path="/about" exact render={() => <About />} />
-          <Route path="/recipes" component={Recipes} />
-        </div>
-      </div>
+
+      <Route path="/" exact render={() => <Home />} />
+      <Route path="/about" exact render={() => <About />} />
+      <Route path="/recipes" exact render={() => <Recipes />} />
+
+      <Route path="/recipes/:id" exact render={() => <Recipe />} />
     </div>
   );
 };

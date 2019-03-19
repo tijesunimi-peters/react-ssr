@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from '../../../shared/Loader';
+import Container from '../../../shared/Container';
 import RecipeItem, { RecipeItemSkeleton } from './RecipeItem';
 import styled from 'styled-components';
 
@@ -47,13 +48,13 @@ class Recipes extends React.Component {
 
   renderSkeleton() {
     return (
-      <>
+      <Container>
         <h1 className="skeleton square" style={{ marginBottom: '20px' }} />
         <RecipesContainer className="recipes-container">
           <RecipeItemSkeleton />
           <RecipeItemSkeleton />
         </RecipesContainer>
-      </>
+      </Container>
     );
   }
 
@@ -66,7 +67,7 @@ class Recipes extends React.Component {
     const isError = this.state.error || this.state.recipes.length === 0;
 
     return (
-      <>
+      <Container>
         <h1>Recipes</h1>
         {!isError ? (
           <RecipesContainer>
@@ -77,7 +78,7 @@ class Recipes extends React.Component {
         ) : (
           this.renderError()
         )}
-      </>
+      </Container>
     );
   }
 

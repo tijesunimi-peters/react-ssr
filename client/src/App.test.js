@@ -15,5 +15,5 @@ it('App renders Header', () => {
 
 it('App renders 3 routes', () => {
   let app = shallow(<App />);
-  expect(app.find(Route)).toHaveLength(3);
+  expect(app.find(Route)).toHaveLength(4);
 });
