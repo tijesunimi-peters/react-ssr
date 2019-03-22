@@ -2,6 +2,11 @@ import React from 'react';
 import Loader from '../../shared/Loader';
 import Container from '../../shared/Container';
 
+/**
+ * @name AboutCompoent
+ * @file Class Component for rendering about page
+ */
+
 export default class About extends React.Component {
   constructor(props) {
     super(props);

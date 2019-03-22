@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Favorite, { Count, FavoriteContainer } from './index';
+import Favorite from './index';
+import FavoriteContainer, { Count } from './FavoriteContainer';
 
 it('Favorite renders without crashing', () => {
   shallow(<Favorite />);

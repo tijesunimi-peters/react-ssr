@@ -53,6 +53,10 @@ const BannerButton = styled(Link)`
   border-radius: 4px;
 `;
 
+/**
+ * @name HomeComponent
+ * @file Class Component for rendering the Home page
+ */
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
