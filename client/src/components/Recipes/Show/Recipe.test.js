@@ -32,9 +32,7 @@ it('RecipeContainer renders without crashing', () => {
   shallow(<RecipeContainer {...dummyRecipe} />);
 });
 
-it('Recipe crashes and renders ErrorBoundary', () => {
-  jest.spyOn(console, 'error').mockImplementation(() => {});
-
+it('Recipe crashes', () => {
   expect(() => {
     mount(<Recipe />);
   }).toThrow();
@@ -47,7 +45,7 @@ it('Ingredient renders without crashing', () => {
 });
 
 it('RecipeContainer onClick props triggers handleRating', () => {
-  const onClick = jest.fn().mockImplementation(val => true);
+  const onClick = jest.fn().mockImplementation(val => () => true);
 
   const container = mount(
     <RecipeContainer {...dummyRecipe} onClick={onClick} />
