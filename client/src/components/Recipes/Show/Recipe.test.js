@@ -33,6 +33,8 @@ it('RecipeContainer renders without crashing', () => {
 });
 
 it('Recipe crashes', () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+
   expect(() => {
     mount(<Recipe />);
   }).toThrow();
