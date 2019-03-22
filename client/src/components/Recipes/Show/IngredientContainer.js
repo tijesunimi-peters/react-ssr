@@ -25,8 +25,8 @@ export const IngredientText = styled.p`
 /**
  * @name IngredientContainerComponent
  * @file Stateless component for displaying Recipe Ingredients
- * @prop {thumb|string} Image Url
- * @prop {text|string}
+ * @prop {string} thumb: Image Url
+ * @prop {string} text
  * @example
  *  const text = "1 Cup of Sound White onions";
  *  const textParts = text.trim().split(' ');

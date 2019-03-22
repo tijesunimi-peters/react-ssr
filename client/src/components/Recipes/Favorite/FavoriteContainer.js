@@ -35,6 +35,7 @@ export const Count = styled.span`
 
 /**
  * @class
+ * @name FavoriteContainerComponent
  * @description Stateless component for Favorite
  * @prop {number} count favorite counts
  * @prop {bool} paint fills svg path with #91c11e on true and #fff on false

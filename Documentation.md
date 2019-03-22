@@ -20,6 +20,29 @@
     -   [Router][16]
     -   [App][17]
     -   [Loader][18]
+-   [AboutCompoent][19]
+-   [HomeComponent][20]
+-   [FavoriteContainerComponent][21]
+    -   [Properties][22]
+-   [FavoriteComponent][23]
+    -   [Properties][24]
+-   [Favorite.handleClick][25]
+-   [Recipes][26]
+-   [NoRatingComponent][27]
+    -   [Properties][28]
+-   [RatingComponent][29]
+    -   [Properties][30]
+-   [StarIconComponent][31]
+    -   [Properties][32]
+-   [RecipeComponent][33]
+-   [RecipeComponent.handleRating][34]
+    -   [Parameters][35]
+-   [IngredientContainerComponent][36]
+    -   [Properties][37]
+    -   [Examples][38]
+-   [RecipeContainerComponent][39]
+    -   [Properties][40]
+-   [ErrorBoundaryComponent][41]
 
 ## Architecture
 
@@ -93,7 +116,7 @@ Output:
 
 #### Parameters
 
--   `devMode` **[boolean][19]** 
+-   `devMode` **[boolean][42]** 
 
 ### BundlingSystem/Client
 
@@ -119,9 +142,9 @@ This is the server side renderer. The renderer replaces `${}` strings in the tem
 
 #### Parameters
 
--   `title` **[string][20]** 
--   `template` **[string][20]** 
--   `location` **[string][20]** 
+-   `title` **[string][43]** 
+-   `template` **[string][43]** 
+-   `location` **[string][43]** 
 
 #### Examples
 
@@ -144,7 +167,7 @@ const template = `
  response.send(htmlBody)
 ```
 
-Returns **[string][20]** html
+Returns **[string][43]** html
 
 ## ServerSystem
 
@@ -174,6 +197,131 @@ Output Folder: `/renderingSystem/dist/[webpackChunkName].js`
 ### Loader
 
 Loader wrapper components for mounting components uses render props
+
+## AboutCompoent
+
+Class Component for rendering about page
+
+## HomeComponent
+
+Class Component for rendering the Home page
+
+## FavoriteContainerComponent
+
+Stateless component for Favorite
+
+### Properties
+
+-   `count` **[number][44]** favorite counts
+-   `paint` **bool** fills svg path with #91c11e on true and #fff on false
+-   `onClick` **func** handles click event for favoriting or unfavoriting the recipe
+
+## FavoriteComponent
+
+Renders the FavoriteContainer and also manages clicks on the favorite icon
+
+### Properties
+
+-   `paint` **[boolean][42]** for filling the svg or making it white
+-   `count` **[number][44]** : number of previous favorites. Increases on first click and decreases on second click
+
+## Favorite.handleClick
+
+Favorites and Unfavorites a recipe<br />
+Scenario: Registered User
+
+## Recipes
+
+Fetches recipes and updates state on server responses
+
+## NoRatingComponent
+
+Stateless component for 0 star ratings
+
+### Properties
+
+-   `starSize` **[string][43]** : width and height of stars
+-   `className` **[string][43]** 
+-   `onClick` **func** 
+
+## RatingComponent
+
+Stateless Component for ratings > 0
+
+### Properties
+
+-   `rating` **[number][44]** 
+-   `starSize` **[string][43]** : width and height of the stars
+-   `label` **bool** : toggles on the label for the ratings
+-   `onClick` **func** : rates the recipes
+
+## StarIconComponent
+
+Stateless component that renders the StarIcon
+
+### Properties
+
+-   `width` **[string][43]** 
+-   `height` **[string][43]** 
+-   `half` **bool** 
+-   `full` **bool** 
+
+## RecipeComponent
+
+Class component that renders the Recipe and manages rating of the recipe
+
+## RecipeComponent.handleRating
+
+### Parameters
+
+-   `val` **[number][44]** : the rating number
+
+## IngredientContainerComponent
+
+Stateless component for displaying Recipe Ingredients
+
+### Properties
+
+-   `thumb` **[string][43]** : Image Url
+-   `text` **[string][43]** 
+
+### Examples
+
+```javascript
+const text = "1 Cup of Sound White onions";
+ const textParts = text.trim().split(' ');
+ const firstPart = textParts.slice(0, 2).join(' ');
+ const remainigParts = textParts.slice(2).join(' ');
+
+ // values
+ firstPart = '1 Cup'
+ remainigParts = 'Sound White onions'
+```
+
+## RecipeContainerComponent
+
+Stateless Component for displaying Recipe
+
+### Properties
+
+-   `calories` **[string][43]** 
+-   `ingredients` **[array][45]** 
+-   `headline` **[string][43]** 
+-   `description` **[string][43]** 
+-   `difficulty` **[string][43]** 
+-   `image` **[string][43]** : url
+-   `name` **[string][43]** 
+-   `rating` **[number][44]** 
+-   `favorites` **[number][44]** 
+-   `fats` **[string][43]** 
+-   `carbos` **[string][43]** 
+-   `proteins` **[string][43]** 
+-   `thumb` **[string][43]** : image url
+-   `time` **[string][43]** : ISO 8601 interval
+
+## ErrorBoundaryComponent
+
+Class Component that renders whenever there is an error in the application
 
 [1]: #architecture
 
@@ -211,6 +359,56 @@ Loader wrapper components for mounting components uses render props
 
 [18]: #loader
 
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[19]: #aboutcompoent
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[20]: #homecomponent
+
+[21]: #favoritecontainercomponent
+
+[22]: #properties
+
+[23]: #favoritecomponent
+
+[24]: #properties-1
+
+[25]: #favoritehandleclick
+
+[26]: #recipes
+
+[27]: #noratingcomponent
+
+[28]: #properties-2
+
+[29]: #ratingcomponent
+
+[30]: #properties-3
+
+[31]: #stariconcomponent
+
+[32]: #properties-4
+
+[33]: #recipecomponent
+
+[34]: #recipecomponenthandlerating
+
+[35]: #parameters-2
+
+[36]: #ingredientcontainercomponent
+
+[37]: #properties-5
+
+[38]: #examples-1
+
+[39]: #recipecontainercomponent
+
+[40]: #properties-6
+
+[41]: #errorboundarycomponent
+
+[42]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[43]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[44]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[45]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array

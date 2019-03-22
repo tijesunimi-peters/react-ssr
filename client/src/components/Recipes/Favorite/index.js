@@ -22,7 +22,8 @@ export default class Favorite extends React.Component {
 
   /**
    * @method Favorite.handleClick
-   * @description Favorites and Unfavorites a recipe being in the scenario of a logged in User
+   * @description Favorites and Unfavorites a recipe<br />
+   * Scenario: Registered User
    */
   handleClick() {
     this.setState(({ count, paint }) => ({
