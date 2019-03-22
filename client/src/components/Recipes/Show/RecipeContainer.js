@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Pairs, Value, Title } from './index';
 import Container from '../../../shared/Container';
 import { Rating } from '../Rating/RecipeRating';
 import IngredientContainer from './IngredientContainer';
@@ -54,6 +53,29 @@ const RecipeImage = styled.img`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+`;
+
+export const Pairs = styled.div`
+  box-sizing: border-box;
+  flex-basis: auto;
+`;
+
+export const Title = styled.div`
+  font-weight: bold;
+
+  h4 {
+    font-size: 24px;
+  }
+`;
+
+export const Value = styled.div`
+  display: flex;
+  color: #343434;
+  justify-content: flex-start;
+
+  @media screen and (min-width: 769px) {
+    justify-content: ${props => (props.left ? 'flex-start' : 'flex-end')};
+  }
 `;
 
 /**

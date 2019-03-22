@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Pairs, Value, Title } from './index';
+import { Pairs, Value, Title } from './RecipeContainer';
 
 const IngredientImage = styled.div`
   width: 50px;
@@ -27,6 +27,15 @@ export const IngredientText = styled.p`
  * @file Stateless component for displaying Recipe Ingredients
  * @prop {thumb|string} Image Url
  * @prop {text|string}
+ * @example
+ *  const text = "1 Cup of Sound White onions";
+ *  const textParts = text.trim().split(' ');
+ *  const firstPart = textParts.slice(0, 2).join(' ');
+ *  const remainigParts = textParts.slice(2).join(' ');
+ *
+ *  // values
+ *  firstPart = '1 Cup'
+ *  remainigParts = 'Sound White onions'
  */
 
 export default ({ thumb, text }) => {

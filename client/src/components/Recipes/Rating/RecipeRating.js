@@ -74,6 +74,9 @@ export const Rating = ({
       starCount++;
 
       stars.push(
+        // starCount is the counter for the index of the star
+        // in the loop and the value is curried into the onClick function
+        // saved for when click event happens
         <Star key={`${i}_full`} onClick={onClick(starCount)}>
           <StarIcon full width={starSize} height={starSize} />
         </Star>

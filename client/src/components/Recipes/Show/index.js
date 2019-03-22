@@ -1,34 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import RecipeContainer from './RecipeContainer';
 import Loader from '../../../shared/Loader';
 import RecipeSkeletonContainer from './RecipeSkeletonContainer';
 
-export const Pairs = styled.div`
-  box-sizing: border-box;
-  flex-basis: auto;
-`;
-
-export const Title = styled.div`
-  font-weight: bold;
-
-  h4 {
-    font-size: 24px;
-  }
-`;
-
-export const Value = styled.div`
-  display: flex;
-  color: #343434;
-  justify-content: flex-start;
-
-  @media screen and (min-width: 769px) {
-    justify-content: ${props => (props.left ? 'flex-start' : 'flex-end')};
-  }
-`;
-
+/**
+ * @class
+ * @name RecipeComponent
+ * @description Class component that renders the Recipe and manages rating of the recipe
+ */
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +26,10 @@ class Recipe extends React.Component {
     }
   }
 
+  /**
+   * @name RecipeComponent.handleRating
+   * @param {number} val: the rating number
+   */
   handleRating(val) {
     return () => {
       this.setState({ rating: val });
