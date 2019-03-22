@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import RecipeItem, {
+import RecipeItem from './RecipeItem';
+import {
   RecipeItemSkeleton,
   RecipeDetailsWrapper,
-} from './RecipeItem';
+} from './RecipeItemContainer';
 import { NoRating, Rating, Star } from '../Rating/RecipeRating';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -16,7 +17,7 @@ it('RecipeItem renders', () => {
 });
 
 it('RecipeItemSkeleton renders', () => {
-  mount(<RecipeItemSkeleton />);
+  shallow(<RecipeItemSkeleton />);
 });
 
 it('RecipeItem renders RecipeItemSkeleton', () => {

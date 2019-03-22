@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Recipes, { RecipesContainer } from './index';
-import RecipeItem, { RecipeItemSkeleton } from './RecipeItem';
+import RecipeItem from './RecipeItem';
+import { RecipeItemSkeleton } from './RecipeItemContainer';
 import Loader from '../../../shared/Loader';
 import fetch from '../../../__mocks__/fetch';
 

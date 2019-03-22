@@ -1,7 +1,8 @@
 import React from 'react';
 import Loader from '../../../shared/Loader';
 import Container from '../../../shared/Container';
-import RecipeItem, { RecipeItemSkeleton } from './RecipeItem';
+import RecipeItem from './RecipeItem';
+import { RecipeItemSkeleton } from './RecipeItemContainer';
 import styled from 'styled-components';
 
 export const RecipesContainer = styled.div`
@@ -30,6 +31,11 @@ export const RecipesPageTitle = styled.div`
   }
 `;
 
+/**
+ * @class
+ * @name Recipes
+ * @description Fetches recipes and updates state on server responses
+ */
 class Recipes extends React.Component {
   constructor(props) {
     super(props);
