@@ -20,6 +20,13 @@ export const Star = styled.div`
   cursor: pointer;
 `;
 
+/**
+ * @name NoRatingComponent
+ * @description Stateless component for 0 star ratings
+ * @prop {string} starSize: width and height of stars
+ * @prop {string} className
+ * @prop {func} onClick
+ */
 export const NoRating = ({ starSize, className, onClick = () => {} }) => (
   <Stars className={className}>
     {Array(5)
@@ -34,6 +41,14 @@ export const NoRating = ({ starSize, className, onClick = () => {} }) => (
   </Stars>
 );
 
+/**
+ * @name RatingComponent
+ * @description Stateless Component for ratings > 0
+ * @prop {number} rating
+ * @prop {string} starSize: width and height of the stars
+ * @prop {bool} label: toggles on the label for the ratings
+ * @prop {func} onClick: rates the recipes
+ */
 export const Rating = ({
   rating,
   className,
@@ -96,4 +111,8 @@ export const Rating = ({
 
 Rating.propTypes = {
   rating: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  starSize: PropTypes.string,
+  label: PropTypes.bool,
+  onClick: PropTypes.func,
 };

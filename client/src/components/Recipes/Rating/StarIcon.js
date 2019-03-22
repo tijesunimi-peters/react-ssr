@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * @name StarIconComponent
+ * @description Stateless component that renders the StarIcon
+ * @prop {string} width
+ * @prop {string} height
+ * @prop {bool} half
+ * @prop {bool} full
+ */
 export default ({ width = '16', height = '16', half, full }) => (
   <svg
     width={width}
