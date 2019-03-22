@@ -64,7 +64,7 @@ module.exports = (devMode = true) => ({
         loader: 'babel-loader',
       },
       {
-        test: /\.(svg|png|jpg|jpeg)/,
+        test: /\.(svg|png|jpg|jpeg|webp)/,
         loader: 'file-loader',
       },
     ],

@@ -4,7 +4,6 @@ import Container from '../../../shared/Container';
 import PropTypes from 'prop-types';
 import { durationParser } from '../../../../../utils/timeParser';
 import { Rating } from '../Rating/RecipeRating';
-import { Redirect } from 'react-router-dom';
 import Loader from '../../../shared/Loader';
 
 const IngredientImage = styled.div`

@@ -8,10 +8,15 @@ export const RecipesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 20px;
 
   @media screen and (min-width: 1440px) {
     justify-content: flex-start;
   }
+`;
+
+const EnhancedContainer = styled(Container)`
+  margin-top: 50px;
 `;
 
 export const RecipesPageTitle = styled.div`
@@ -87,7 +92,7 @@ class Recipes extends React.Component {
     const isError = this.state.error || this.state.recipes.length === 0;
 
     return (
-      <Container>
+      <EnhancedContainer>
         <RecipesPageTitle>
           <h1>Delicious and Quick Recipes</h1>
         </RecipesPageTitle>
@@ -100,7 +105,7 @@ class Recipes extends React.Component {
         ) : (
           this.renderError()
         )}
-      </Container>
+      </EnhancedContainer>
     );
   }
 
