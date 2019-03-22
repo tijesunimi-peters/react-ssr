@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import App, { About, Recipes, Recipe } from './App';
 import Header from './shared/Header';
 import { Route, MemoryRouter } from 'react-router-dom';
+import ErrorBoundary from './shared/ErrorBoundary';
 
 import fetch from './__mocks__/fetch';
 
@@ -35,6 +36,8 @@ it('App navigates to About', () => {
 });
 
 it('App navigates to Recipes', () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+
   const app = mount(
     <MemoryRouter initialEntries={['/recipes']}>
       <App />
@@ -46,10 +49,45 @@ it('App navigates to Recipes', () => {
 
 it('App navigates to Recipe', () => {
   const app = mount(
-    <MemoryRouter initialEntries={['/recipes/1']}>
+    <MemoryRouter
+      initialEntries={[
+        {
+          pathname: '/recipes/1',
+          state: {
+            id: '1',
+            ingredients: [],
+            description: '',
+            headline: '',
+            name: '',
+          },
+        },
+      ]}>
       <App />
     </MemoryRouter>
   );
 
   expect(app.find(Recipe)).toHaveLength(1);
+});
+
+it('Recipe redirects to Recipes', () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+
+  const app = mount(
+    <MemoryRouter
+      initialEntries={[
+        {
+          pathname: '/recipes/1',
+          state: {
+            ingredients: [],
+            description: '',
+            headline: '',
+            name: '',
+          },
+        },
+      ]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  expect(app.find(ErrorBoundary)).toHaveLength(1);
 });

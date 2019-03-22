@@ -1,13 +1,18 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import RecipeItem, {
   RecipeItemSkeleton,
   RecipeDetailsWrapper,
 } from './RecipeItem';
-import { NoRating, Rating, Star } from './RecipeRating';
+import { NoRating, Rating, Star } from '../Rating/RecipeRating';
+import { MemoryRouter } from 'react-router-dom';
 
 it('RecipeItem renders', () => {
-  mount(<RecipeItem data={{}} />);
+  mount(
+    <MemoryRouter>
+      <RecipeItem data={{}} />
+    </MemoryRouter>
+  );
 });
 
 it('RecipeItemSkeleton renders', () => {
@@ -15,14 +20,21 @@ it('RecipeItemSkeleton renders', () => {
 });
 
 it('RecipeItem renders RecipeItemSkeleton', () => {
-  const recipe = mount(<RecipeItem data={{}} />).setState({ recipe: null });
+  const recipe = shallow(<RecipeItem data={{}} />, {
+    disableLifecycleMethods: true,
+  }).setState({ recipe: null });
+
   expect(recipe.find(RecipeItemSkeleton)).toHaveLength(1);
 });
 
 it('RecipeItem renders Rating with 2 full Stars 1 half Star and 2 grey Stars', () => {
   const recipe = mount(
-    <RecipeItem data={{ id: 1, name: 'Game', rating: 2.5 }} />
-  ).setState({ inView: true });
+    <MemoryRouter>
+      <RecipeItem data={{ id: 1, name: 'Game', rating: 2.5 }} />
+    </MemoryRouter>
+  );
+
+  recipe.find(RecipeItem).setState({ inView: true });
 
   expect(recipe.find(RecipeDetailsWrapper)).toHaveLength(1);
   expect(recipe.find(NoRating)).not.toHaveLength(1);
@@ -43,9 +55,12 @@ it('RecipeItem renders Rating with 2 full Stars 1 half Star and 2 grey Stars', (
 
 it('RecipeItem renders NoRating', () => {
   const recipe = mount(
-    <RecipeItem data={{ id: 1, name: 'Game', rating: 0 }} />
-  ).setState({ inView: true });
+    <MemoryRouter>
+      <RecipeItem data={{ id: 1, name: 'Game', rating: 0 }} />
+    </MemoryRouter>
+  );
 
+  recipe.find(RecipeItem).setState({ inView: true });
   expect(recipe.find(NoRating)).toHaveLength(1);
 
   const stars = recipe.find(NoRating).find(Star);
@@ -59,24 +74,30 @@ it('RecipeItem triggers onScroll function', () => {
   const map = {};
 
   jest.spyOn(RecipeItem.prototype, 'handleScroll');
+  jest.spyOn(RecipeItem.prototype, 'inView');
 
   window.addEventListener = jest.fn().mockImplementation((event, cb) => {
     map[event] = cb;
   });
 
   jest.spyOn(window, 'removeEventListener');
-  jest.spyOn(window, 'requestAnimationFrame');
+  jest.spyOn(window, 'addEventListener');
+  jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
 
   const recipe = mount(
-    <RecipeItem data={{ id: 1, name: 'Game', rating: 0 }} />
-  ).setState({ inView: true });
+    <MemoryRouter>
+      <RecipeItem data={{ id: 1, name: 'Game', rating: 0 }} />
+    </MemoryRouter>
+  );
 
+  expect(window.addEventListener).toHaveBeenCalled();
+  recipe.find(RecipeItem).setState({ inView: true });
+  expect(RecipeItem.prototype.inView).toHaveBeenCalled();
+
+  expect(RecipeItem.prototype.handleScroll).toHaveBeenCalled();
   map.scroll();
-
   expect(window.requestAnimationFrame).toHaveBeenCalled();
   expect(RecipeItem.prototype.handleScroll).toHaveBeenCalled();
-
   recipe.unmount();
-
   expect(window.removeEventListener).toHaveBeenCalled();
 });

@@ -4,19 +4,43 @@
   margin-bottom: 20px;
 
   &.mod-nav {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     background-color: white;
   }
 
-  &.mod-grey {
-    background-color: grey;
+  &.mod-relative {
+    position: relative;
   }
 }
 
 .hf-container {
-  max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
+  max-width: 96vw;
+
+  @media screen and (min-width: 769px) {
+    max-width: 1440px;
+  }
+
+  &.mod-small {
+    @media screen and (min-width: 769px) {
+      max-width: 1140px;
+    }
+  }
+
+  &.white {
+    background-color: white;
+  }
+
+  &.padded {
+    padding: 20px 15px;
+  }
+
+  &.recipe-description {
+    margin-top: -75px;
+    z-index: 100;
+  }
 }
 
 .hf-header {
@@ -28,4 +52,100 @@
 
 .nav {
   width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  &.top-align {
+    align-items: stretch;
+
+    @media screen and (min-width: 769px) {
+      align-items: flex-start;
+    }
+  }
+
+  &.no-column {
+    flex-direction: row !important;
+  }
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+
+    &.pair {
+      flex-direction: inherit;
+    }
+  }
+
+  &.mod-column {
+    flex-direction: column;
+  }
+
+  &.pair {
+    margin-bottom: 30px;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  &.ingredient {
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media screen and (min-width: 601px) {
+      flex-direction: row;
+      align-items: inherit;
+    }
+  }
+}
+
+.col {
+  flex: 1;
+  flex-wrap: wrap;
+  display: flex;
+
+  @media screen and (min-width: 769px) {
+    &.half-basis {
+      flex-basis: 50%;
+    }
+  }
+
+  &.no-column {
+    flex-basis: 50% !important;
+  }
+
+  &.lean {
+    flex: unset;
+  }
+
+  &.half-basis {
+    flex-basis: auto;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.white {
+    background-color: white;
+  }
+
+  &.mod-margin {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+
+  &.ingredient {
+    flex-direction: row;
+
+    @media screen and (min-width: 600px) {
+      flex-direction: column;
+    }
+  }
 }

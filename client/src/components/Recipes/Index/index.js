@@ -7,6 +7,22 @@ import styled from 'styled-components';
 export const RecipesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-start;
+  }
+`;
+
+export const RecipesPageTitle = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+
+  & > h1 {
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 class Recipes extends React.Component {
@@ -40,7 +56,7 @@ class Recipes extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          recipes: [...data, ...data, ...data],
+          recipes: data,
           loading: false,
           error: false,
         });
@@ -72,7 +88,9 @@ class Recipes extends React.Component {
 
     return (
       <Container>
-        <h1>Recipes</h1>
+        <RecipesPageTitle>
+          <h1>Delicious and Quick Recipes</h1>
+        </RecipesPageTitle>
         {!isError ? (
           <RecipesContainer>
             {this.state.recipes.map((recipe, i) => {

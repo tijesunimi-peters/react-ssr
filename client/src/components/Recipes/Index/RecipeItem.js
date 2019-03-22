@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { durationParser } from '../../../../../utils/timeParser';
-import { NoRating, Rating } from './RecipeRating';
+import { NoRating, Rating } from '../Rating/RecipeRating';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export const RecipeWrapper = styled.div`
@@ -14,7 +15,11 @@ export const RecipeWrapper = styled.div`
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 
   &:last-child {
-    margin-right: 0;
+    margin-right: unset;
+
+    @media screen and (min-width: 769px) {
+      margin-right: auto;
+    }
   }
 `;
 
@@ -66,9 +71,10 @@ export const RecipeCaloriesTime = styled.span`
   font-weight: bold;
 `;
 
-export const Stars = styled.div`
-  margin-left: auto;
+const RecipeItemLink = styled(Link)`
   display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
 export const RecipeItemSkeleton = () => {
@@ -86,7 +92,7 @@ export const RecipeItemSkeleton = () => {
 
 export const RecipeItemContent = ({ recipe }) => {
   return (
-    <>
+    <RecipeItemLink to={{ pathname: `/recipes/${recipe.id}`, state: recipe }}>
       <RecipeImage
         style={{
           backgroundImage: `url(${recipe.thumb})`,
@@ -98,16 +104,14 @@ export const RecipeItemContent = ({ recipe }) => {
         <RecipeBottom>
           <RecipeCaloriesTime>{recipe.calories || 'N/A'}</RecipeCaloriesTime>
           <RecipeCaloriesTime>{durationParser(recipe.time)}</RecipeCaloriesTime>
-          <Stars>
-            {!recipe.rating || recipe.rating === 0 ? (
-              <NoRating />
-            ) : (
-              <Rating rating={recipe.rating} />
-            )}
-          </Stars>
+          {!recipe.rating || recipe.rating === 0 ? (
+            <NoRating />
+          ) : (
+            <Rating rating={recipe.rating} />
+          )}
         </RecipeBottom>
       </RecipeDetailsWrapper>
-    </>
+    </RecipeItemLink>
   );
 };
 
@@ -139,18 +143,16 @@ class RecipeItem extends React.Component {
   }
 
   handleScroll() {
-    if (!this.state.inView && this.inView()) {
-      this.setState({ inView: true });
-    }
+    requestAnimationFrame(() => {
+      if (!this.state.inView && this.inView()) {
+        this.setState({ inView: true });
+      }
+    });
   }
 
   componentDidMount() {
     this.handleScroll();
-    window.addEventListener('scroll', () => {
-      requestAnimationFrame(() => {
-        this.handleScroll();
-      });
-    });
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {

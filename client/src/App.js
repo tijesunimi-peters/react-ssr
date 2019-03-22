@@ -2,6 +2,7 @@ import React from 'react';
 import loadable from '@loadable/component';
 import Header from './shared/Header';
 import { Route, Switch } from 'react-router-dom';
+import ErrorBoundary from './shared/ErrorBoundary';
 
 export const Home = loadable(
   () => import(/* webpackChunkName: "home" */ './components/Home'),
@@ -32,13 +33,22 @@ export const Recipes = loadable(
 const App = () => {
   return (
     <div>
-      <Header />
-      <Switch>
-        <Route path="/" exact render={() => <Home />} />
-        <Route path="/about" exact render={() => <About />} />
-        <Route path="/recipes" exact render={() => <Recipes />} />
-        <Route path="/recipes/:id" exact render={() => <Recipe />} />
-      </Switch>
+      <ErrorBoundary>
+        <Header />
+        <Switch>
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/about" exact render={() => <About />} />
+          <Route path="/recipes" exact render={() => <Recipes />} />
+
+          <Route
+            path="/recipes/:id"
+            exact
+            render={props => {
+              return <Recipe {...props.location.state} />;
+            }}
+          />
+        </Switch>
+      </ErrorBoundary>
     </div>
   );
 };

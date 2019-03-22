@@ -60,7 +60,7 @@ it('Recipes renders content', () => {
   expect(loader.find(RecipeItem)).toHaveLength(2);
   expect(recipes.state().recipes).toHaveLength(2);
   expect(loader.find('h1')).toHaveLength(1);
-  expect(loader.find('h1').text()).toEqual('Recipes');
+  expect(loader.find('h1').text()).toEqual('Delicious and Quick Recipes');
 });
 
 it('Recipes renders No recipes', () => {
@@ -97,10 +97,17 @@ it('Recipes renders null if isError', () => {
 });
 
 it('Recipes renders `Could not load recipes`', () => {
+  global.fetch = jest.fn().mockImplementation(() =>
+    Promise.reject({
+      catch: jest.fn().mockImplementation(cb => cb()),
+    })
+  );
+
   const recipes = shallow(<Recipes />).setState({
     error: true,
     loading: false,
   });
+
   const loader = recipes.find(Loader).shallow();
   expect(loader.find('h3')).toHaveLength(1);
   expect(loader.find('h3').text()).toEqual('Could not load recipes');

@@ -5,7 +5,27 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-ul, h4 {
+ul, h4, h1, p {
   padding: 0;
   margin: 0;
+  letter-spacing: -0.3px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: gree;
+  }
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 54px;
+}
+
+h4, p {
+  font-size: 16px;
+  line-height: 24px;
 }
