@@ -109,7 +109,7 @@ const RecipeContainer = props => {
           </SpacedDescription>
           <SpacedDescription className="col" flex1 normal>
             <Pairs className="row pair">
-              <Value className="col">
+              <Value className="col" favorite>
                 <Favorite count={favorites} />
               </Value>
             </Pairs>

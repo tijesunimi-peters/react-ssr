@@ -21,8 +21,12 @@ export const Title = styled.div`
 
 export const Value = styled.div`
   display: flex;
-  justify-content: ${props => (props.left ? 'flex-start' : 'flex-end')};
   color: #343434;
+  justify-content: flex-start;
+
+  @media screen and (min-width: 769px) {
+    justify-content: ${props => (props.left ? 'flex-start' : 'flex-end')};
+  }
 `;
 
 class Recipe extends React.Component {
