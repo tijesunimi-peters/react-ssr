@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Recipe, { RecipeContainer, Ingredient } from './index';
+
+import Recipe from './index';
+import RecipeContainer from './RecipeContainer';
+import Ingredient from './IngredientContainer';
 
 const dummyRecipe = {
   calories: '2600 kcal',
