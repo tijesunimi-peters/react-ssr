@@ -69,7 +69,7 @@ it('App navigates to Recipe', () => {
   expect(app.find(Recipe)).toHaveLength(1);
 });
 
-it('Recipe redirects to Recipes', () => {
+it('Recipe renders the ErrorBoundary', () => {
   jest.spyOn(console, 'error').mockImplementation(() => {});
 
   const app = mount(

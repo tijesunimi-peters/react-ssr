@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * @class
+ * @description Class Component that renders whenever there is an error in the application
+ * @name ErrorBoundaryComponent
+ */
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
