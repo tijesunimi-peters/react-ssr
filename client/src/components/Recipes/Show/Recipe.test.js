@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import Recipe from './index';
 import RecipeContainer from './RecipeContainer';
 import Ingredient from './IngredientContainer';
+import ErrorBoundary from '../../../shared/ErrorBoundary';
 
 const dummyRecipe = {
   calories: '2600 kcal',
@@ -29,6 +30,14 @@ it('Recipe renders without crashing', () => {
 
 it('RecipeContainer renders without crashing', () => {
   shallow(<RecipeContainer {...dummyRecipe} />);
+});
+
+it('Recipe crashes and renders ErrorBoundary', () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+
+  expect(() => {
+    mount(<Recipe />);
+  }).toThrow();
 });
 
 it('Ingredient renders without crashing', () => {

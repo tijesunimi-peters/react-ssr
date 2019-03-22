@@ -17,7 +17,7 @@ const SVG = styled.svg`
   position: absolute;
 `;
 
-const Count = styled.span`
+export const Count = styled.span`
   display: inline-flex;
   position: absolute;
   top: 0;
@@ -52,7 +52,7 @@ export default ({ count }) => {
           fill-rule="evenodd"
         />
       </SVG>
-      <Count>{count}</Count>
+      {count > 0 && <Count>{count}</Count>}
     </FavoriteWrapper>
   );
 };
