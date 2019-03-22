@@ -33,7 +33,8 @@ class Recipe extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { mounted: false };
+    this.state = { mounted: false, rating: props.rating };
+    this.handleRating = this.handleRating.bind(this);
   }
 
   componentDidMount() {
@@ -44,12 +45,25 @@ class Recipe extends React.Component {
     }
   }
 
+  handleRating(val) {
+    return () => {
+      this.setState({ rating: val });
+    };
+  }
+
   render() {
+    const properties = Object.assign(
+      { ...this.props },
+      { rating: this.state.rating }
+    );
+
     return (
       <Loader
         mounted={this.state.mounted}
         skeleton={() => <RecipeSkeletonContainer />}
-        render={() => <RecipeContainer {...this.props} />}
+        render={() => (
+          <RecipeContainer {...properties} onClick={this.handleRating} />
+        )}
       />
     );
   }

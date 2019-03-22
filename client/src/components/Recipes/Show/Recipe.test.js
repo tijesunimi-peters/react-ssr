@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import Recipe from './index';
-import RecipeContainer from './RecipeContainer';
+import RecipeContainer, { StyledRating } from './RecipeContainer';
 import Ingredient from './IngredientContainer';
-import ErrorBoundary from '../../../shared/ErrorBoundary';
+import { Star } from '../Rating/RecipeRating';
 
 const dummyRecipe = {
   calories: '2600 kcal',
@@ -44,4 +44,24 @@ it('Ingredient renders without crashing', () => {
   shallow(
     <Ingredient thumb={dummyRecipe.thumb} text={dummyRecipe.ingredients[0]} />
   );
+});
+
+it('RecipeContainer onClick props triggers handleRating', () => {
+  const onClick = jest.fn().mockImplementation(val => true);
+
+  const container = mount(
+    <RecipeContainer {...dummyRecipe} onClick={onClick} />
+  );
+
+  expect(onClick).toHaveBeenCalled();
+  const styledRating = container.find(StyledRating);
+  expect(styledRating).toHaveLength(1);
+  const stars = styledRating.find(Star);
+  expect(stars).toHaveLength(5);
+
+  expect(onClick).toHaveBeenCalledWith(1);
+  expect(onClick).toHaveBeenCalledWith(2);
+  expect(onClick).toHaveBeenCalledWith(3);
+  expect(onClick).toHaveBeenCalledWith(4);
+  expect(onClick).toHaveBeenCalledWith(5);
 });

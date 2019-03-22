@@ -36,7 +36,7 @@ const WhiteSpacedCol = styled(SpacedDescription)`
   }
 `;
 
-const StyledRating = styled(Rating)`
+export const StyledRating = styled(Rating)`
   margin-left: unset;
   margin: 20px 0;
 `;
@@ -91,6 +91,7 @@ const RecipeContainer = props => {
     proteins,
     thumb,
     time,
+    onClick,
   } = props;
 
   return (
@@ -105,7 +106,13 @@ const RecipeContainer = props => {
           <SpacedDescription className="col column" normal>
             <h1>{name}</h1>
             <h4>{headline}</h4>
-            <StyledRating normal rating={rating || 0} starSize="24" label />
+            <StyledRating
+              normal
+              rating={rating || 0}
+              starSize="24"
+              label
+              onClick={onClick}
+            />
           </SpacedDescription>
           <SpacedDescription className="col" flex1 normal>
             <Pairs className="row pair">

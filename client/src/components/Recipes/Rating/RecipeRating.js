@@ -17,15 +17,16 @@ export const Stars = styled.div`
 export const Star = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
-export const NoRating = ({ starSize, className }) => (
+export const NoRating = ({ starSize, className, onClick = () => {} }) => (
   <Stars className={className}>
     {Array(5)
       .fill()
       .map((_, i) => {
         return (
-          <Star key={`${i}_grey`}>
+          <Star key={`${i}_grey`} onClick={onClick(i + 1)}>
             <StarIcon width={starSize} height={starSize} />
           </Star>
         );
@@ -33,21 +34,32 @@ export const NoRating = ({ starSize, className }) => (
   </Stars>
 );
 
-export const Rating = ({ rating, className, starSize = '16', label }) => {
+export const Rating = ({
+  rating,
+  className,
+  starSize = '16',
+  label,
+  onClick = () => {},
+}) => {
   if (rating === 0)
-    return <NoRating className={className} starSize={starSize} />;
+    return (
+      <NoRating className={className} starSize={starSize} onClick={onClick} />
+    );
 
   const [whole, half] = rating.toString().split('.');
 
   const remainder = Math.floor(5 - rating);
 
   let stars = [];
+  let starCount = 0;
 
   Array(parseInt(whole, 10))
     .fill()
     .forEach((_, i) => {
+      starCount++;
+
       stars.push(
-        <Star key={`${i}_full`}>
+        <Star key={`${i}_full`} onClick={onClick(starCount)}>
           <StarIcon full width={starSize} height={starSize} />
         </Star>
       );
@@ -55,7 +67,7 @@ export const Rating = ({ rating, className, starSize = '16', label }) => {
 
   if (half) {
     stars.push(
-      <Star key="half">
+      <Star key="half" onClick={onClick(++starCount)}>
         <StarIcon half width={starSize} height={starSize} />
       </Star>
     );
@@ -65,8 +77,9 @@ export const Rating = ({ rating, className, starSize = '16', label }) => {
     Array(remainder)
       .fill()
       .forEach((_, i) => {
+        starCount++;
         stars.push(
-          <Star key={`${i}_grey`}>
+          <Star key={`${i}_grey`} onClick={onClick(starCount)}>
             <StarIcon width={starSize} height={starSize} />
           </Star>
         );
