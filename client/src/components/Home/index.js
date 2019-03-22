@@ -11,21 +11,26 @@ const Banner = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   flex-direction: column;
   padding: 20px;
-  height: 50%;
+  min-height: 50%;
   color: white;
   position: absolute;
   left: 0;
-  align-items: center;
+  align-items: flex-start;
+
+  @media screen and (min-width: 769px) {
+    align-items: center;
+  }
 
   h1 {
     font-size: 64px;
     margin-bottom: 20px;
     color: #91c11e;
+    line-height: 70px;
   }
 `;
 
 const BannerWrapper = styled.div`
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: calc(100vh - 70px);

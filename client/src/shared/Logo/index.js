@@ -5,6 +5,7 @@ import logo from '../../hellofresh-logo.svg';
 
 export const LogoLink = styled(Link)`
   margin-left: auto;
+  padding-left: 20px;
 
   .logo {
     width: 50px;
