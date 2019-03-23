@@ -19,11 +19,13 @@
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "start": "nodemon ./server/index.js",
+    "start": "node ./server/index.js",
+    "start:dev": "nodemon ./server/index.js",
     "build": "webpack",
     "test": "cd client/src && jest --verbose",
     "precommit": "lint-staged",
-    "build:doc": "documentation build client/** renderingSystem/src/index.js webpack.config.js server/index.js -f md -o Documentation.md --config ./documentation.yml"
+    "build:doc": "documentation build client/** renderingSystem/src/index.js webpack.config.js server/index.js -f md -o Documentation.md --config ./documentation.yml",
+    "deploy": "NODE_ENV=production yarn run build"
   },
   "jest": {
     "moduleNameMapper": {
@@ -72,6 +74,7 @@
     "puppeteer": "^1.13.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"

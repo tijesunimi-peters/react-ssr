@@ -27,6 +27,10 @@ app.get('/favicon.ico', function (_, res) {
   return res.send('./favicon.ico');
 });
 
-app.listen(process.env.PORT, function () {
-  return console.log("App listening on PORT: " + process.env.PORT);
-});
+if(process.env.NODE_ENV === 'development') {
+  app.listen(process.env.PORT, function () {
+    return console.log("App listening on PORT: " + process.env.PORT);
+  });
+} else {
+  app.listen(process.env.PORT || 8080);
+}
