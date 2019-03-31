@@ -1,4 +1,4 @@
-# HelloFresh Recipes
+# Heyo
 
 ## How to run
 1. Clone Repo
